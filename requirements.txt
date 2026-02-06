@@ -1,0 +1,23 @@
+Django>=4.2
+psycopg2-binary
+celery
+redis
+django-celery-beat
+django-celery-results
+python-dotenv
+djangorestframework
+django-cors-headers
+python-dotenv>=1.1
+certifi
+Pillow
+
+
+# HTTP / API
+requests>=2.31
+urllib3>=2.0
+
+# Database
+psycopg2-binary>=2.9
+
+# Optional but strongly recommended
+python-dotenv>=1.0
