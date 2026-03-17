@@ -1,0 +1,77 @@
+name: Django CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_pass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U test_user -d test_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    env:
+      DB_NAME: test_db
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+      DB_HOST: localhost
+      DB_PORT: 5432
+      REDIS_HOST: localhost
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.13
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libpq-dev
+
+    - name: Install uv
+      run: |
+        curl -Ls https://astral.sh/uv/install.sh | bash
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+    - name: Install Dependencies
+      run: |
+        uv pip install -r requirements.txt --system
+
+    - name: Wait for Postgres
+      run: |
+        until pg_isready -h localhost -p 5432 -U test_user; do
+          echo "Waiting for postgres..."
+          sleep 2
+        done
+
+    - name: Run Migrations
+      run: python manage.py migrate
+
+    - name: Run Tests
+      run: python manage.py test
+
+    - name: Build Docker Image
+      run: docker build -t movie-api .
