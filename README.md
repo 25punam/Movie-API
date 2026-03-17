@@ -47,5 +47,3 @@ npm start
 
 <img width="1080" height="603" alt="image" src="https://github.com/user-attachments/assets/2e4c16fc-fcdf-44fd-bee0-e2404ecc5ba8" />
 
-
-
