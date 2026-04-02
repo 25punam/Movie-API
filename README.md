@@ -1,87 +1,126 @@
-﻿# Movie-API
+# 🎬 Movie API
 
-🎬 Movie Search API & Scalable Data Engine
-A high-performance movie discovery platform featuring a responsive 4-column grid, smart pagination, and a scalable Django-backend capable of handling 300,000+ records.
+## 🚀 Movie Search API & Scalable Data Engine
 
+A high-performance movie discovery platform featuring a responsive **4-column grid**, smart **pagination**, and a scalable **Django backend capable of handling 300,000+ records**.
+
+---
+
+## ✨ Features
+
+* 🔍 Movie Search API
+* 📄 Pagination for large datasets
+* 📅 Release Year Filtering
+* 🖼 Automatically hides cards when poster images are missing
+* ⚡ Optimized database queries for high performance
+* 🐳 Docker containerized backend
+* 📱 Responsive 4-column movie grid layout
+
+---
 
 ## 🛠 Tech Stack
 
-- **Backend:** Django, Django REST Framework
-- **Frontend:** React
-- **Database:** PostgreSQL
-- **DevOps:** Docker, Docker Compose
+* **Backend:** Django, Django REST Framework
+* **Frontend:** React
+* **Database:** PostgreSQL
+* **DevOps:** Docker, Docker Compose
 
 ---
 
 ## 🐳 Docker Backend Setup
 
-The recommended way to run the backend is with Docker.
+The recommended way to run the **backend** is with Docker.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/25punam/movie-api.git
-   cd movie-api
+### 1️⃣ Clone the Repository
 
-2. **Build and start all backend services**
-    docker compose up --build
+```bash
+git clone https://github.com/25punam/movie-api.git
+cd movie-api
+```
 
-3. **Access the backend API**  
-    http://localhost:8000    
+### 2️⃣ Build and Start Backend Services
 
+```bash
+docker compose up --build
+```
+
+### 3️⃣ Access the Backend API
+
+http://localhost:8000
+
+---
 
 ## 💻 React Frontend Setup
 
 The frontend is started manually using npm.
 
-1. **Navigate to the frontend folder**
-        cd frontend
-    ```
+### 1️⃣ Navigate to the Frontend Folder
 
-2. **Install dependencies**
-    ```bash
-    npm install
-3. **Start the development server**
-    ```bash
-    npm start
-    
-4. **Access the frontend**
-    http://localhost:3000
-    
+```bash
+cd frontend
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Start the Development Server
+
+```bash
+npm start
+```
+
+### 4️⃣ Access the Frontend
+
+http://localhost:3000
+
 ---
 
 ## 🔎 API Example
 
 Example endpoint:
-    /api/search/?language=en&page=1&limit=12
+
+```
+/api/search/?language=en&page=1&limit=12
+```
 
 Example full URL:
-    http://localhost:8000/api/search/?language=en&page=1&limit=12
+
+```
+http://localhost:8000/api/search/?language=en&page=1&limit=12
+```
 
 ---
 
 ## 📂 Project Structure
 
+```
 movie-api/
 │
 ├── movie_api/        # Django backend
 ├── frontend/         # React frontend
 ├── docker-compose.yml
 └── README.md
+```
 
+---
 
 ## ⚡ Performance
 
-# Efficient database queries and pagination
-# Optimized API responses for large datasets
-# Containerized deployment for easy scaling
- 
- 
+* Efficient database queries and pagination
+* Optimized API responses for large datasets
+* Containerized deployment for easy scaling
+
+---
+
 ## 🌟 Future Improvements
 
-# Advanced search filters
-# Movie recommendation system
-# Redis caching
-# Elasticsearch integration for faster search
+* Advanced search filters
+* Movie recommendation system
+* Redis caching
+* Elasticsearch integration for faster search
 
 
 
