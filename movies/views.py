@@ -27,8 +27,16 @@ class MovieSearchAPIView(APIView):
         language = request.GET.get("language")
         genre = request.GET.get("genre")
         min_rating = request.GET.get("min_rating")
+        release_year = request.GET.get("release_year")
         page = request.GET.get("page", 1)
         limit = request.GET.get("limit")
+        # Filter by release year if provided
+        if release_year:
+            try:
+                year = int(release_year)
+                queryset = queryset.filter(release_date__year=year)
+            except (ValueError, TypeError):
+                pass
 
         # Validate and parse pagination parameters
         try:
