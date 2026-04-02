@@ -124,6 +124,8 @@ movie-api/
 
 
 
+
+
 <img width="1080" height="603" alt="image" src="https://github.com/user-attachments/assets/db0c9f52-bde5-4d89-9f2f-ac375b3e112e" />
 
 
