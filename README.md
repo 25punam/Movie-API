@@ -1,5 +1,12 @@
 # 🎬 Movie API
 
+<img width="1080" height="603" alt="image" src="https://github.com/user-attachments/assets/db0c9f52-bde5-4d89-9f2f-ac375b3e112e" />
+
+
+<img width="1067" height="636" alt="image" src="https://github.com/user-attachments/assets/d05a9590-d623-435a-ad93-5361dec96240" />
+
+
+
 ## 🚀 Movie Search API & Scalable Data Engine
 
 A high-performance movie discovery platform featuring a responsive **4-column grid**, smart **pagination**, and a scalable **Django backend capable of handling 300,000+ records**.
@@ -124,12 +131,6 @@ movie-api/
 
 
 
-
-
-<img width="1080" height="603" alt="image" src="https://github.com/user-attachments/assets/db0c9f52-bde5-4d89-9f2f-ac375b3e112e" />
-
-
-<img width="1067" height="636" alt="image" src="https://github.com/user-attachments/assets/d05a9590-d623-435a-ad93-5361dec96240" />
 
 
 
