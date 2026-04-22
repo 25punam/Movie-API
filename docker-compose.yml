@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 services:
@@ -24,14 +25,12 @@ services:
       - postgres_db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    env_file:
-      - .env
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: Movies
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password123
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Movies"]
       interval: 10s
       retries: 5
       start_period: 30s
@@ -41,6 +40,7 @@ services:
     image: redis
     ports:
       - "6379:6379"
+
   redis-commander:
     image: rediscommander/redis-commander
     ports:
@@ -75,4 +75,4 @@ services:
     restart: always
 
 volumes:
-  postgres_db:
+  postgres_db:    
