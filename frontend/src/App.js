@@ -42,7 +42,7 @@ const GENRE_ID_MAP = {
   10753: 'Adult',
 };
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 const PAGE_SIZE = 12;
 
