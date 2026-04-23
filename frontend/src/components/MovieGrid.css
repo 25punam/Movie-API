@@ -1,0 +1,120 @@
+ /* 🔒 outer wrapper */
+.movie-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 🔒 info bar — THIS WAS BREAKING YOUR GRID */
+.result-info {
+  min-height: 70px;            /* Use min-height to allow wrapping */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  border-top: 1px solid #f1f1f1;
+  padding: 12px 24px;          /* Add vertical padding */
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  text-align: center;          /* Center text if it wraps */
+  flex-wrap: wrap;             /* Allow content to wrap */
+}
+
+/* 🔒 grid — optimized for performance with consistent card sizing */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* exactly 4 cards per row on desktop */
+  gap: 1.2rem;
+  align-items: start;
+  justify-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 12px;
+  min-height: 50vh; /* Ensures consistent layout even with few results */
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.movie-poster {
+  width: 100%;
+  aspect-ratio: 2/3;   /* fixed poster height ratio - consistent for all cards */
+  overflow: hidden;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* no stretch, maintains aspect ratio */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster img {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  .movie-grid { 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .movie-grid { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .movie-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding: 0 8px;
+  }
+
+  .movie-card {
+    border-radius: 8px;
+  }
+
+  .movie-info {
+    padding: 0.8rem;
+  }
+}
+
+/* small phones handled by the 600px rule above */
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+  font-size: 1.1rem;
+}
