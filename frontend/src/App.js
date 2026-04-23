@@ -7,7 +7,7 @@ import MovieGrid from './components/MovieGrid';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
 import Pagination from './components/Pagination';
-import SearchBar from './components/SearchBar';
+
 
 // Genre ID to name mapping (TMDB standard)
 const GENRE_ID_MAP = {
@@ -64,9 +64,7 @@ function App() {
   const [totalCount, setTotalCount] = useState(0);
   const [isSidebarVisible, setIsSidebarVisible] = useState(window && window.innerWidth > 800);
 
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -168,7 +166,7 @@ function App() {
       if (ids.length) params.genre = ids.join(',');
     }
     fetchMovies(params, page);
-  }, [fetchMovies, page, filters]);
+  }, [fetchMovies, page, filters, genreNameToId]);
 
   const onSearch = (newFilters) => {
     const merged = { ...filters, ...newFilters };
