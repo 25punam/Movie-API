@@ -42,7 +42,7 @@ const GENRE_ID_MAP = {
   10753: 'Adult',
 };
 
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const PAGE_SIZE = 12;
 
@@ -85,7 +85,7 @@ function App() {
     setWarning(null);
     try {
       const requestParams = { ...params, page: pageNum, limit: PAGE_SIZE };
-      const response = await axios.get(`${API_BASE_URL}/search/`, { params: requestParams, timeout: 10000 });
+      const response = await axios.get(`${API_BASE_URL}/api/search/`, { params: requestParams, timeout: 10000 });
       const all = (response && response.data && response.data.movies) ? response.data.movies : [];
       const returnedCount = response.data.returned_count || all.length;
       const total = response.data.total_count || all.length;
@@ -127,10 +127,26 @@ function App() {
         }
       });
 
-      setGenreNameToId(nameToId);
-      setGenresList(extracted.length ? extracted : [
-        'Action','Adventure','Animation','Comedy','Crime','Documentary','Drama','Family','Fantasy','Horror','Music','Mystery','Romance','Science Fiction','Thriller'
-      ]);
+      // Only update genreNameToId if changed
+      setGenreNameToId(prev => {
+        const prevKeys = Object.keys(prev);
+        const newKeys = Object.keys(nameToId);
+        if (prevKeys.length !== newKeys.length || !prevKeys.every(k => prev[k] === nameToId[k])) {
+          return nameToId;
+        }
+        return prev;
+      });
+
+      // Only update genresList if changed
+      setGenresList(prev => {
+        const newList = extracted.length ? extracted : [
+          'Action','Adventure','Animation','Comedy','Crime','Documentary','Drama','Family','Fantasy','Horror','Music','Mystery','Romance','Science Fiction','Thriller'
+        ];
+        if (prev.length !== newList.length || !prev.every((v, i) => v === newList[i])) {
+          return newList;
+        }
+        return prev;
+      });
 
       const sorted = all.sort((a,b) => (b.popularity || 0) - (a.popularity || 0) || (new Date(b.release_date || 0) - new Date(a.release_date || 0)));
       setMovies(sorted);
