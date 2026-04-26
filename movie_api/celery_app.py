@@ -1,5 +1,5 @@
 import os
-from movie_api.celery_app import Celery
+from .celery_app import app as Celery
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "movie_api.settings")
 
