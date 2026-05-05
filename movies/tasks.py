@@ -28,7 +28,7 @@ def fetch_movies_task(self):
     )
     session.mount("https://", HTTPAdapter(max_retries=retries))
 
-    for year in range(1970, 2027):
+    for year in range(2000, 2027):
         page = 1
 
         while page <= 500:
