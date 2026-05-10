@@ -19,7 +19,6 @@ A high-performance movie discovery platform built with **Django REST Framework**
 - 🔍 **Smart Search API** — Multi-parameter filtering by title, language, genre, rating, and release year
 - ⚡ **High Performance** — DB indexed fields + optimized QuerySets on 300,000+ records
 - 🔄 **Background Tasks** — Celery workers fetch TMDB data without blocking the API
-- ⏰ **Scheduled Jobs** — Celery Beat auto-updates movie data on a schedule
 - 📄 **Pagination** — Offset-based pagination for safe browsing of large datasets
 - 🖼 **Smart UI** — Auto-hides movie cards when poster images are missing
 - 🐳 **Fully Dockerized** — One command starts the entire 6-service stack
