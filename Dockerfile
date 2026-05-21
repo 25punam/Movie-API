@@ -1,16 +1,9 @@
-FROM python:3.13.3-slim-bookworm
+FROM python:3.12-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
 WORKDIR /app
-
-# # Install curl + psql client
-# RUN apt-get update && apt-get install -y \
-#     curl \
-#     postgresql-client \
-#     && rm -rf /var/lib/apt/lists/*
-
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -20,22 +13,20 @@ RUN apt-get update && apt-get install -y \
     && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# uv copy (fast pip alternative)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# requirements file (root me)
 COPY requirements.txt .
-
 RUN uv pip install -r requirements.txt --system
 
-# project code (root)
 COPY . .
+
+# Create non-root user
+RUN adduser --disabled-password --gecos "" appuser
+USER appuser
 
 EXPOSE 8000
 
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["gunicorn", "movie_api.wsgi:application", "--bind", "0.0.0.0:8000"]
-
+CMD ["gunicorn", "movie_api.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
 
 
 # FROM python:3.13-bullseye
